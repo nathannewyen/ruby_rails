@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   # Relationships
   belongs_to :blog
   belongs_to :user
+  has_many :comments, as: :commentable
   has_many :messages, dependent: :destroy
 
   # Validation
