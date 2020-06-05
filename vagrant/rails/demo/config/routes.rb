@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'comments/index'
+
+  get 'comments/new'
+
+  get 'comments/edit'
+
   get 'products/index'
 
   get 'products/new'
