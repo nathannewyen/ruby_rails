@@ -4,17 +4,15 @@ class SurveyController < ApplicationController
     end
 
     def create
-        session[:user] = params
-
-        flash[:name] = params[:name]
-        flash[:location] = params[:location]
-        flash[:language] = params[:language]
-        flash[:comment] = params[:comment]
+        session[:name] = params[:name]
+        session[:location] = params[:location]
+        session[:language] = params[:language]
+        session[:comment] = params[:comment]
 
         if session[:count]
-        session[:count] += 1
+            session[:count] += 1
         else
-        session[:count] = 1
+            session[:count] = 1
         end
 
         flash[:count] = session[:count]
@@ -22,7 +20,6 @@ class SurveyController < ApplicationController
     end
 
     def result
-        @user = session[:user]
         render 'result'
     end
 end
