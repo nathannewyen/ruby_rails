@@ -1,0 +1,18 @@
+// Place all the styles related to the Survey controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.container {
+    margin-top: 10px;
+
+    form {
+        padding: 30px;
+
+        textarea {
+            resize: none;
+        }
+    }
+
+    .result {
+        padding: 30px;
+    }
+}

@@ -16,7 +16,7 @@ class UserController < ApplicationController
   end
 
   def times 
-    session[:times] ||= 0
+    session[:times] == 0
 
     @times = session[:times] += 1
 
