@@ -10,6 +10,7 @@
                 <th>Street</th>
                 <th>City</th>
                 <th>State</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,13 @@
                 <td> <%= dojo.street %> </td>
                 <td><%= dojo.city %></td>
                 <td><%= dojo.state %></td>
+                <td>
+                    <button class="btn btn-primary">
+                        <a href="/dojos/<%= dojo.id  %>" class="text-light">Show</a>
+                    </button>
+                    <button class="btn btn-success">Edit</button>
+                    <button class="btn btn-danger">Destroy</button>
+                </td>
             </tr>
             <% end %>
         </tbody>

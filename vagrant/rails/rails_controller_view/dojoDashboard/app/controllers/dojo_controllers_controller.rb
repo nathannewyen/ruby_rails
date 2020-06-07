@@ -14,6 +14,10 @@ class DojoControllersController < ApplicationController
     redirect_to '/'
   end
 
+  def info
+    @dojo = Dojo.find(params[:id])
+  end
+
   def new
     render 'new'
   end
