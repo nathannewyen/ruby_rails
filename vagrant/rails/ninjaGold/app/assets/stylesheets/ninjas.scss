@@ -1,0 +1,25 @@
+.container-fluid {
+    padding: 30px;
+
+    .gold {
+        margin: 0px 30px;
+
+        span {
+            padding: 0px 20px;
+        }
+    }
+
+    .card-deck {
+        margin: 30px 10px;
+    }
+
+    .activities {
+        margin: 30px 30px;
+
+        ul {
+            max-height: 300px;
+            overflow: scroll;
+            list-style: none;
+        }
+    }
+}

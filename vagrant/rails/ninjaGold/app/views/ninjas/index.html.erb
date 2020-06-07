@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<div class="container-fluid">
+    <div class="gold">
+        <h5>Your gold: <span class="border"> <%= session[:gold] %> </span> </h5>
+    </div>
+    <div class="card-deck">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Farm</h4>
+                <p class="card-text"> (earns 10 - 20 golds) </p>
+                <form action="/farm" method="post">
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <button type="submit" class="btn btn-warning">Find Gold!</button>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Cave</h4>
+                <p class="card-text"> (earns 5 - 10 golds) </p>
+                <form action="/cave" method="post">
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <button type="submit" class="btn btn-warning">Find Gold!</button>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">House</h4>
+                <p class="card-text"> (earns 2 - 5 golds) </p>
+                <form action="/house" method="post">
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <button type="submit" class="btn btn-warning">Find Gold!</button>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Casino</h4>
+                <p class="card-text"> (earns/takes 0 - 50 golds) </p>
+                <form action="/casino" method="post">
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <button type="submit" class="btn btn-warning">Find Gold!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="activities">
+        <h5>Activities:</h5>
+        <ul class="border">
+            <% session[:activities].each do |activity| %>
+            <li class="text-primary">
+                <%= activity %>
+            </li>
+            <% end %>
+        </ul>
+    </div>
+</div>
