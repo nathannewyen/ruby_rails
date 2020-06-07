@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<div class="container">
+    <h3>Listing 4 Dojos</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Coding Dojo Brach</th>
+                <th>Street</th>
+                <th>City</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @all_dojo.each do |dojo| %>
+            <tr>
+                <th scope="row"> <%= dojo.branch %> </th>
+                <td> <%= dojo.street %> </td>
+                <td><%= dojo.city %></td>
+                <td><%= dojo.state %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+</div>

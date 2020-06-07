@@ -1,0 +1,2 @@
+module DojoControllersHelper
+end
