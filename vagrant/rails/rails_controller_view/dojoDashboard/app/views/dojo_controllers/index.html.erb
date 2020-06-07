@@ -24,8 +24,12 @@
                     <button class="btn btn-primary">
                         <a href="/dojos/<%= dojo.id  %>" class="text-light">Show</a>
                     </button>
-                    <button class="btn btn-success">Edit</button>
-                    <button class="btn btn-danger">Destroy</button>
+                    <button class="btn btn-success">
+                        <a href="/dojos/<%= dojo.id  %>/edit" class="text-light">Edit</a>
+                    </button>
+                    <button type="submit" class="btn btn-danger">
+                        <a href="/dojos/<%= dojo.id  %>/delete" data-method="delete" class="text-light">Destroy</a>
+                    </button>
                 </td>
             </tr>
             <% end %>
