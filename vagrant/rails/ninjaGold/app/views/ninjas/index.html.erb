@@ -10,8 +10,9 @@
             <div class="card-body">
                 <h4 class="card-title">Farm</h4>
                 <p class="card-text"> (earns 10 - 20 golds) </p>
-                <form action="/farm" method="post">
+                <form action="/earngold" method="post">
                     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <input type="hidden" name="location" value="Farm">
                     <button type="submit" class="btn btn-warning">Find Gold!</button>
                 </form>
             </div>
@@ -20,8 +21,9 @@
             <div class="card-body">
                 <h4 class="card-title">Cave</h4>
                 <p class="card-text"> (earns 5 - 10 golds) </p>
-                <form action="/cave" method="post">
+                <form action="/earngold" method="post">
                     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <input type="hidden" name="location" value="Cave">
                     <button type="submit" class="btn btn-warning">Find Gold!</button>
                 </form>
             </div>
@@ -30,8 +32,9 @@
             <div class="card-body">
                 <h4 class="card-title">House</h4>
                 <p class="card-text"> (earns 2 - 5 golds) </p>
-                <form action="/house" method="post">
+                <form action="/earngold" method="post">
                     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <input type="hidden" name="location" value="House">
                     <button type="submit" class="btn btn-warning">Find Gold!</button>
                 </form>
             </div>
@@ -40,8 +43,9 @@
             <div class="card-body">
                 <h4 class="card-title">Casino</h4>
                 <p class="card-text"> (earns/takes 0 - 50 golds) </p>
-                <form action="/casino" method="post">
+                <form action="/earngold" method="post">
                     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <input type="hidden" name="location" value="Casino">
                     <button type="submit" class="btn btn-warning">Find Gold!</button>
                 </form>
             </div>
