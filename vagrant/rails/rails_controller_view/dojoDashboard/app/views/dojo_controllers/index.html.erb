@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
 <div class="container">
     <h3>Listing 4 Dojos</h3>
@@ -16,8 +16,8 @@
         <tbody>
             <% @all_dojo.each do |dojo| %>
             <tr>
-                <th scope="row"> <%= dojo.branch %> </th>
-                <td> <%= dojo.street %> </td>
+                <th scope="row"><%= dojo.branch %></th>
+                <td><%= dojo.street %></td>
                 <td><%= dojo.city %></td>
                 <td><%= dojo.state %></td>
                 <td>
@@ -39,5 +39,4 @@
     <button class="btn btn-primary">
         <a href="/dojos/new" class="text-light">New Dojo</a>
     </button>
-
 </div>

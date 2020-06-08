@@ -1,9 +1,4 @@
 class DojoControllersController < ApplicationController
-  private
-    def dojo_params
-      params.require(:dojo).permit(:branch, :street, :city, :state)
-    end
-    
   def index
     @all_dojo = Dojo.all
   end
@@ -36,4 +31,10 @@ class DojoControllersController < ApplicationController
     Dojo.find(params[:id]).destroy
     redirect_to '/'
   end
+
+  private
+  def dojo_params
+    params.require(:dojo).permit(:branch, :street, :city, :state)
+  end
+    
 end
