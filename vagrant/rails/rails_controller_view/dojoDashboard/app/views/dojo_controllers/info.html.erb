@@ -5,6 +5,29 @@
     <h1><%= @dojo.branch %></h1>
     <h4>Address: <%= @dojo.street %></h4>
     <h4>City <%= @dojo.city %>, State: <%= @dojo.state %></h4>
-    <a href="/">Home</a>
     <a href="/dojos/<%= @dojo.id %>/edit ">Edit</a>
+
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @dojo_student.each do |student| %>
+            <tr>
+                <td><%= student.fname %></td>
+                <td><%= student.lname %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <button class="btn btn-primary">
+        <a href="/" class="text-light">Home</a>
+    </button>
+    <button class="btn btn-primary float-right">
+        <a href="/dojos/<%= @dojo.id %>/students/new" class="text-light">Add student</a>
+    </button>
+
 </div>

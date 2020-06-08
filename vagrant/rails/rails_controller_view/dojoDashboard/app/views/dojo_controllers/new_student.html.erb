@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<div class="container">
+    <h3>New Student</h3>
+    <form action="/dojos/<%= @dojo.id  %> /students/new/process" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <div class="form-group row">
+            <label for="fname" class="col-sm-2 col-form-label">First Name:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="student[fname]">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="lname" class="col-sm-2 col-form-label">Last Name:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="student[lname]">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" name="student[email]">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="fname" class="col-sm-2 col-form-label">Dojo:</label>
+            <div class="col-sm-10">
+                <select class="custom-select" name="student[dojo]">
+                    <% @all_dojo.each do |dojo| %>
+                    <option value="<%= dojo.id %>"> <%= dojo.branch  %> </option>
+                    <% end %>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </form>
+</div>
