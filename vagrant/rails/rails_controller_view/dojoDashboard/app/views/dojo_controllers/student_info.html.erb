@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<div class="container">
+    <h3> <%= @dojo.branch  %> 's <%= @student.fname  %> </h3>
+    <h5>Email: <%= @student.email  %> </h5>
+
+    <h4>Cohort</h4>
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @students.each do |student| %>
+            <tr>
+                <td>
+                    <a href="/dojos/<%= @dojo.id %>/students/<%= student.id %>">
+                        <%= student.fname  %>
+                    </a>
+                </td>
+                <td> <%= student.lname  %> </td>
+                <td> <%= student.email  %> </td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary">
+        <a href="/" class="text-light">Home</a>
+    </button>
+
+    <button class="btn btn-success">
+        <a href="/dojos/<%= @dojo.id  %>/students/<%= @student.id %>/edit" class="text-light">Edit</a>
+    </button>
+
+    <button type="submit" class="btn btn-danger">
+        <a href="/dojos/<%= @dojo.id  %>/students/<%= @student.id %>/delete" data-method="delete"
+            class="text-light">Destroy</a>
+    </button>
+</div>

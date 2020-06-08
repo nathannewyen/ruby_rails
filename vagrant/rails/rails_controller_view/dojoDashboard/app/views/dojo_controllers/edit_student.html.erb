@@ -2,25 +2,26 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 <div class="container">
-    <h3>New Student</h3>
-    <form action="/dojos/<%= @dojo.id  %> /students/new/process" method="post">
+    <h3>Editing <%= @student.fname %> <%= @student.lname %>  </h3>
+    <form action="/dojos/<%= @dojo.id %>/students/<%= @student.id %>/edit/process" method="post">
+    <input type="hidden" name="_method" value="patch">
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <div class="form-group row">
             <label for="fname" class="col-sm-2 col-form-label">First Name:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="student[fname]">
+                <input type="text" class="form-control" name="student[fname]" placeholder="<%= @student.fname %>">
             </div>
         </div>
         <div class="form-group row">
             <label for="lname" class="col-sm-2 col-form-label">Last Name:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="student[lname]">
+                <input type="text" class="form-control" name="student[lname]" placeholder="<%= @student.lname %>">
             </div>
         </div>
         <div class="form-group row">
             <label for="email" class="col-sm-2 col-form-label">Email:</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" name="student[email]">
+                <input type="email" class="form-control" name="student[email]" placeholder="<%= @student.email %>">
             </div>
         </div>
         <div class="form-group row">
@@ -35,7 +36,7 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10 offset-sm-2">
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </div>
     </form>

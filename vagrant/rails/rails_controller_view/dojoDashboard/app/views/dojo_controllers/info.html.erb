@@ -12,13 +12,19 @@
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>
             <% @dojo_student.each do |student| %>
             <tr>
-                <td><%= student.fname %></td>
+                <td>
+                    <a href="/dojos/<%= @dojo.id %>/students/<%= student.id  %>">
+                        <%= student.fname %>
+                    </a>
+                </td>
                 <td><%= student.lname %></td>
+                <td><%= student.email %></td>
             </tr>
             <% end %>
         </tbody>

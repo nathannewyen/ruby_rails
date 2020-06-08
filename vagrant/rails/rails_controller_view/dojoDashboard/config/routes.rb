@@ -11,5 +11,10 @@ Rails.application.routes.draw do
 
   get'dojos/:id/students/new' => 'dojo_controllers#add_student'
   post 'dojos/:id/students/new/process' => 'dojo_controllers#add_student_process'
+  get 'dojos/:id/students/:student_id' => 'dojo_controllers#student_info'
+  get 'dojos/:id/students/:student_id/edit' => 'dojo_controllers#student_edit'
+  patch 'dojos/:id/students/:student_id/edit/process' => 'dojo_controllers#student_update'
+  delete 'dojos/:id/students/:student_id/delete' => 'dojo_controllers#delete_student'
 
+  
 end
