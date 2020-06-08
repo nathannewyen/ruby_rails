@@ -1,20 +1,22 @@
 Rails.application.routes.draw do
-  get 'students/index'
+  # get 'dojos' => 'dojos#index'
+  # get 'dojos/new' => 'dojos#new'
+  # get 'dojos/:id' => 'dojos#show'
+  # get 'dojos/:id/edit' => 'dojos#edit'
+  # post 'dojos' => 'dojos#create'
+  # patch 'dojos/:id/update' => 'dojos#update'
+  # delete 'dojos/:id' => 'dojos#destroy'
 
-  get '' => 'dojo_controllers#index'
-  get 'dojos/new' => 'dojo_controllers#new'
-  get 'dojos/:id' => 'dojo_controllers#info'
-  get 'dojos/:id/edit' => 'dojo_controllers#edit'
-  post 'create' => 'dojo_controllers#create'
-  patch 'dojos/:id/edit_process' => 'dojo_controllers#update'
-  delete 'dojos/:id/delete' => 'dojo_controllers#delete'
-
-  get'dojos/:id/students/new' => 'dojo_controllers#add_student'
-  post 'dojos/:id/students/new/process' => 'dojo_controllers#add_student_process'
-  get 'dojos/:id/students/:student_id' => 'dojo_controllers#student_info'
-  get 'dojos/:id/students/:student_id/edit' => 'dojo_controllers#student_edit'
-  patch 'dojos/:id/students/:student_id/edit/process' => 'dojo_controllers#student_update'
-  delete 'dojos/:id/students/:student_id/delete' => 'dojo_controllers#delete_student'
+  # get'dojos/:dojo_id/students/new' => 'students#new'
+  # post 'dojos/:id/students/new/process' => 'dojos#add_student_process'
+  # get 'dojos/:dojo_id/students/:id' => 'dojos#show'
+  # get 'dojos/:id/students/:student_id/edit' => 'dojos#student_edit'
+  # patch 'dojos/:id/students/:student_id/edit/process' => 'dojos#student_update'
+  # delete 'dojos/:id/students/:student_id/delete' => 'dojos#delete_student'
 
   
+resources :dojos do
+  resources :students
+end
+
 end
