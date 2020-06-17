@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  # callback to require user login
+  skip_before_filter :require_login, :only => [:create, :new]
+  # callback to validate user 
+  before_action :check_user, only: [:edit, :show, :update, :delete]
+
   def index
     @all_user = User.all
   end
@@ -18,10 +23,26 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.email = params['email']
+    @user.name = params['name']
+    if @user.valid?
+      @user.save
+      redirect_to "/users/#{@user.id}"
+    else
+      flash[:errors] = ['Invalid entry(s)']
+      redirect_to "/users/#{@user.id}"
+    end
   end
 
   def show
     @user = User.find(params[:id])
+    @secrets = Secret.all
+    @likes = Like.all
   end
 
 

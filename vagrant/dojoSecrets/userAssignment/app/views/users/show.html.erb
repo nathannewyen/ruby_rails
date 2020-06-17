@@ -1,0 +1,43 @@
+<h1><%= @user.name %></h1>
+<div class="container">
+    <form action="/secrets/new" method="post">
+
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+        <div class="form-group">
+            <p>New Secret:</p>
+            <textarea name="content" id="secretsInput" cols="80" rows="8"></textarea>
+        </div>
+            <input type="submit" value="Create Secret">
+
+    </form>
+</div>
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <h3> <%= @user.name %> Secrets:</h3>
+
+            <% @secrets.each do |secret| %>
+                <% if current_user == secret.user %>
+
+                <div>
+                    <%= secret.content %>
+                    <p><%= secret.likes.length %> likes</p>
+
+                <% if current_user == secret.user %>
+                    <form action="/secrets/<%= secret.id %>" method="post" class="d-inline-block">
+                        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                <% end %>
+                </div>
+            <% end %>
+        <% end %>
+
+
+</div>

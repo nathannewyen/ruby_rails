@@ -1,0 +1,10 @@
+<h1>Login</h1>
+
+<form action="/sessions" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+    <input type="email" name="user[email]" placeholder="Email"><br>
+    <input type="text" name="user[password]" placeholder="Password"><br>
+    <input type="submit" value="Login">
+
+</form>
