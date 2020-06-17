@@ -1,4 +1,13 @@
 <div class="container">
+ <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li class="text-danger"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
     <form action="/users" method="post">
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <div class="form-group row">
