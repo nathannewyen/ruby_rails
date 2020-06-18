@@ -10,20 +10,20 @@ class SessionsController < ApplicationController
     user = User.where(email: params[:user][:email])
       if !user.empty?
         if user[0].authenticate(params[:user][:password])
-          session[:user_id] = user[0].id
+          session[:id] = user[0].id
           redirect_to "/events"
         else
-          redirect_to login_url, notice: "Invalid (Nested) login Attempt"
+          redirect_to '/users'
         end
       else
-        redirect_to login_url, notice: "Invalid login Attempt"
+        redirect_to '/users'
       end
   end
 
   def destroy
     # log out user
-    session[:user_id] = nil
-    redirect_to login_url
+    session[:id] = nil
+    redirect_to '/users'
     # set session [:user_id] to nil
     # redirect to login page
   end

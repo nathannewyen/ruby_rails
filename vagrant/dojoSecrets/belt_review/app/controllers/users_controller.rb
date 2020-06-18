@@ -24,23 +24,33 @@ class UsersController < ApplicationController
         end
     end
 
+    def edit
+        if !session[:id]
+            redirect_to '/users'
+        else
+            @user = User.find(params[:id])
+        end
+        render 'edit'
+    end
+
     def update
         if !session[:id]
             redirect_to '/users'
         else
             @user = User.find(params[:id])
-            if @user.update(update_params)
+            @user.update(update_params)
+            if @user.valid?
                 redirect_to '/events'
             else
                 flash[:errors] = @user.errors.full_messages
-                redirect_to :back
+                redirect_to "/users/#{@user.id}/edit"
             end
         end 
     end
 
-    def logout
-        reset_session
-        redirect_to '/users'
+    def show
+        @user = User.find(params[:id])
+        render 'show'
     end
 
     private
@@ -49,7 +59,7 @@ class UsersController < ApplicationController
     end
 
     def update_params
-      params.require(:user).permit(:fname, :lname, :email, :city, :state)
+        params.require(:user).permit(:fname, :lname, :email, :city, :state)
     end
 
 end

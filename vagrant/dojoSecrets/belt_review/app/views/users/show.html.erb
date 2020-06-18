@@ -1,0 +1,15 @@
+<div class="container">
+    <h3>
+        <%= @user.fname %>
+        <%= @user.lname %>
+    </h3>
+    <h3><%= @user.email %></h3>
+    <h3>
+        <%= @user.city %>
+        <%= @user.state %>
+    </h3>
+
+    <a href="/users/<%= @user.id %>/edit">
+        <button class="btn-success btn">Edit</button>
+    </a>
+</div>

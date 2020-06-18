@@ -1,12 +1,20 @@
-<div class="jumbotron">
-    <h1>Welcome, <%= @user.fname %>! <a class="btn btn-default" href="/users/<%= @user.id %>/edit">Edit Profile
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></h1>
-    <p>See the events below!</p>
-</div>
+<div class="container-fluid">
+    <div class="jumbotron">
+        <h1>Welcome, <a href="/users/<%= @user.id %>"> <%= @user.fname %> </a>! <a class="btn btn-default"
+                href="/users/<%= @user.id %>/edit"> <button type="submit" class="btn btn-success">Edit Profile</button>
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></h1>
+        <p>See the events below!</p>
+        <div class="logout float-right">
+            <form action="/sessions/<%= @user.id %>" method="post">
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit" class="btn btn-primary">Log out</button>
+            </form>
+        </div>
+    </div>
 
-<% if @event.exists? %>
-<h2><strong>Events in <%= @user.state %></strong></h2>
-<div class="text-center">
+    <% if @event.exists? %>
+    <h2><strong>Events in <%= @user.state %></strong></h2>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -22,16 +30,16 @@
             <tr>
                 <td><a href="/events/<%= event.id %>"><%= event.name %></a></td>
                 <td><%= event.date.strftime("%B %d, %Y") %></td>
-                <td><%= event.city %></td>
-                <td><%= event.host.first_name %></td>
+                <td><%= event.location %></td>
+                <td><%= event.user.fname %></td>
                 <td>
-                    <% if event.host.first_name == @user.first_name %>
+                    <% if event.user.fname == @user.fname %>
                     <a href="/events/<%= event.id %>/edit" class="btn btn-info">Edit <span
                             class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                     <a href="/events/<%= event.id %>" class="btn btn-danger" data-method="delete">Delete <span
                             class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                     <% else %>
-                    <% if event.users.exists?(session[:id]) %>
+                    <% if event.user.exists?(session[:id]) %>
                     Attending <a href="/attendees/<%= event.id %>/delete" data-method="delete"
                         class="btn btn-danger">Cancel Plans</a>
                     <% else %>
@@ -44,15 +52,11 @@
         </tbody>
     </table>
     <% else %>
-    <em>
-        <h2>There are not any events in <%= @user.state %>!</h2>
-    </em>
+    <h4>There are not any events in <%= @user.state %>!</h4>
     <% end %>
-</div>
 
-<% if @other_event.exists? %>
-<h2><strong>Events in other states</strong></h2>
-<div class="text-center">
+    <% if @other_event.exists? %>
+    <h2><strong>Events in other states</strong></h2>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -69,17 +73,17 @@
             <tr>
                 <td><a href="/events/<%= event.id %>"><%= event.name %></a></td>
                 <td><%= event.date.strftime("%B %d, %Y") %></td>
-                <td><%= event.city %></td>
+                <td><%= event.location %></td>
                 <td><%= event.state %></td>
-                <td><%= event.host.first_name %></td>
+                <td><%= event.user.fname %></td>
                 <td>
-                    <% if event.host.first_name == @user.first_name %>
+                    <% if event.user.fname == @user.fname %>
                     <a href="/events/<%= event.id %>/edit" class="btn btn-info">Edit <span
                             class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                     <a href="/events/<%= event.id %>" class="btn btn-danger" data-method="delete">Delete <span
                             class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                     <% else %>
-                    <% if event.users.exists?(session[:id]) %>
+                    <% if event.user.fname %>
                     Attending <a href="/attendees/<%= event.id %>/delete" data-method="delete">Cancel</a>
                     <% else %>
                     <a href="/events/<%= event.id %>/join" class="btn btn-success">Join</a>
@@ -91,45 +95,37 @@
         </tbody>
     </table>
     <% else %>
-    <em>
-        <h2>There are currently no events in other states!</h2>
-    </em>
+    <h4>There are currently no events in other states!</h4>
     <% end %>
-</div>
 
-<h2><strong>Add Event</strong></h2>
-<form class="form-horizontal" action="/events" method="post">
-    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    <h2><strong>Add Event</strong></h2>
+    <form action="/events" method="post">
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
 
-    <div class="form-group">
-        <label for="name" class="control-label col-sm-2">Name</label>
-        <div class="col-sm-10">
+        <div class="form-group">
+            <label for="name" class="control-label col-sm-2">Name</label>
             <input type="text" class="form-control" name="event[name]" placeholder="Name">
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="date" class="control-label col-sm-2">Date</label>
-        <div class="col-sm-10">
+        <div class="form-group">
+            <label for="date" class="control-label col-sm-2">Date</label>
             <input type="date" class="form-control" name="event[date]" placeholder="Date">
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="location" class="control-label col-sm-2">Location</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="event[city]" placeholder="Location">
+        <div class="form-group">
+            <label for="location" class="control-label col-sm-2">Location</label>
+            <input type="text" class="form-control" name="event[location]" placeholder="Location">
         </div>
-    </div>
 
-    <div class="form-group">
-        <label for="state" class="control-label col-sm-2">State</label>
-        <div class="col-sm-10">
-
+        <div class="form-group">
+            <label for="state" class="control-label col-sm-2">State</label>
+            <select class="custom-select" name="event[state]">
+                <%= options_for_select(us_states)%>
+            </select>
         </div>
-    </div>
-    <div class="col-sm-offset-2 col-sm-10">
-        <input type="hidden" name="event[host_id]" value="session[:id]" />
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</form>
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="hidden" name="event[host_id]" value="session[:id]" />
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>

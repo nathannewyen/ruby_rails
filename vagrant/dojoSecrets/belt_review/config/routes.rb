@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get 'users' => 'users#index'
   post 'users' => 'users#create'
   get 'users/:id/edit' => 'users#edit'
-  patch 'users/:id' => 'users#update'
+  get 'users/:id' => 'users#show'
+  patch 'users/:id/update' => 'users#update'
 
     # ------------sessions-------------
 

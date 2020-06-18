@@ -1,32 +1,32 @@
 class EventsController < ApplicationController
     def index
-    if !session[:user_id]
+    if !session[:id]
       redirect_to '/users'
     else
-      @user = User.find(session[:user_id])
+      @user = User.find(session[:id])
       @event = Event.where(state: @user.state)
       @other_event = Event.where.not(state: @user.state)
     end
   end
 
   def show
-    if !session[:user_id]
+    if !session[:id]
       redirect_to '/users'
     else
-      @user = User.find(session[:user_id])
+      @user = User.find(session[:id])
       @event = Event.find(params[:id])
       @comment = Comment.where(event_id:@event.id)
     end
   end
 
   def create
-    if !session[:user_id]
+    if !session[:id]
       redirect_to '/users'
     else
-      @event = Event.new(events_params)
-      @event.host_id = session[:user_id]
+      @event = Event.create(events_params)
+      @event.user_id = session[:id]
       if @event.save
-        redirect_to :root
+        redirect_to '/events'
       else
         flash[:errors] = @event.errors.full_messages
         redirect_to :back
@@ -35,7 +35,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    if !session[:user_id]
+    if !session[:id]
       redirect_to '/users'
     else
       @event = Event.find(params[:id])
@@ -43,7 +43,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    if !session[:user_id]
+    if !session[:id]
       redirect_to '/users'
     else
       @event = Event.find(params[:id])
@@ -57,7 +57,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    if !session[:user_id]
+    if !session[:id]
       redirect_to '/users'
     else
       @event = Event.find(params[:id])
@@ -68,6 +68,6 @@ class EventsController < ApplicationController
 
   private
     def events_params
-      params.require(:event).permit(:name, :date, :city, :state)
+      params.require(:event).permit(:name, :date, :location, :state)
     end
 end
