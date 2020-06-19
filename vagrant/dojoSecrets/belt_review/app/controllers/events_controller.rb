@@ -3,6 +3,7 @@ class EventsController < ApplicationController
     if !session[:id]
       redirect_to '/users'
     else
+      @event_new = Event.new
       @user = User.find(session[:id])
       @event = Event.where(state: @user.state)
       @other_event = Event.where.not(state: @user.state)
