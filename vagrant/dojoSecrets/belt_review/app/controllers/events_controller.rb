@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-    def index
+  def index
     if !session[:id]
       redirect_to '/users'
     else
@@ -23,7 +23,7 @@ class EventsController < ApplicationController
     if !session[:id]
       redirect_to '/users'
     else
-      @event = Event.create(events_params)
+      @event = Event.new(events_params)
       @event.user_id = session[:id]
       if @event.save
         redirect_to '/events'
@@ -48,7 +48,7 @@ class EventsController < ApplicationController
     else
       @event = Event.find(params[:id])
       if @event.update(events_params)
-        redirect_to :root
+        redirect_to '/events'
       else
         flash[:errors] = @event.errors.full_messages
         redirect_to :back

@@ -38,8 +38,7 @@ class UsersController < ApplicationController
             redirect_to '/users'
         else
             @user = User.find(params[:id])
-            @user.update(update_params)
-            if @user.valid?
+            if @user.update_attributes(update_params)
                 redirect_to '/events'
             else
                 flash[:errors] = @user.errors.full_messages
