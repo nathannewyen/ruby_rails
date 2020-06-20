@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :events
-  has_many :attendees
-  has_many :events, :through => :attendees
+  has_many :attendances
+  has_many :events, :through => :attendances
 
   EMAIL_REGEX = /\A([^@\s]+)@((?:[a-z0-9]+\.)+[a-z]+)\z/i
   validates :fname, :lname, presence: true, length: { minimum: 3 }

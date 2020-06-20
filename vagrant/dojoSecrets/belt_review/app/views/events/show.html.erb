@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="jumbotron">
+        <h1><strong><%= @event.name %></strong></h1>
+        <h4>Host: <%= @event.user.fname %></h4>
+        <h4>Location: <%= @event.location%>, <%=@event.state %></h4>
+        <h4>Date: <%= @event.date.strftime("%B %d, %Y") %></h4>
+        <% if @event.users.exists? %>
+        <h4>People attending: <%= @event.users.count %></h4>
+        <a href="/events">
+            <button class="btn btn-primary">Event Dashboard</button>
+        </a>
+    </div>
+
+    <div class="container-fluid text-center">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">City</th>
+                    <th class="text-center">State</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @event.users.each do |e| %>
+                <tr>
+                    <td><%= e.fname %></td>
+                    <td><%= e.city %></td>
+                    <td><%= e.state %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+
+    <% if @comment.exists? %>
+    <h2><strong>Discussions about this event</strong></h2>
+    <div class="comment">
+        <% @comment.each do |comment| %>
+        <h4>
+            <%= comment.user.fname %> says: <%= comment.content%>
+        </h4>
+        <% end %>
+    </div>
+    <% else %>
+    <h2><strong>Add the first comment to this event!</strong></h2>
+    <% end %>
+    <form class="form" action="/comments/<%= @event.id %>" method="post">
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+        <input type="hidden" name="comment[event_id]" value="<%= @event.id %>">
+        <div class="form-group">
+            <label for="comment">
+                <h2><strong>Add Comment</strong></h2>
+            </label>
+            <textarea name="comment[content]" class="form-control" placeholder="10 character minimum!"
+                rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Comment</button>
+    </form>
+    <% else %>
+    <em>
+        <h4>No one is currently attending this event!</h4>
+    </em>
+    <% end %>
+</div>

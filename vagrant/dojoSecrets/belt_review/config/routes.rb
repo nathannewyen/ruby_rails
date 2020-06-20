@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'users/:id' => 'users#show'
   patch 'users/:id/update' => 'users#update'
 
-    # ------------sessions-------------
+  # sessions
 
   get 'sessions/new' => 'sessions#new', as: 'login'
 
@@ -24,4 +24,12 @@ Rails.application.routes.draw do
   get 'events/:id/edit' => 'events#edit'
   patch 'events/:id' => 'events#update'
   delete 'events/:id' => 'events#destroy'
+
+  # attendances
+  get 'events/:id/join' => 'attendances#join'
+  delete 'attendances/:id/delete' => 'attendances#destroy'
+
+  # comment
+  post 'comments/:event_id' => 'comments#create'
+  
 end
