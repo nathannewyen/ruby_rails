@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
           session[:id] = user[0].id
           redirect_to "/events"
         else
+          flash[:errors] = @user.errors.full_messages
           redirect_to '/users'
         end
       else

@@ -1,0 +1,19 @@
+<a class="btn btn-primary" href="<%= songs_path %>">Songs Dashboard</a>
+<br>
+<h1><%= @song.title %></h1>
+<h2>Artist: <%= @song.artist %></h2>
+
+<p>Others who added <%= @song.title %>:</p>
+
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Times Added</th>
+    </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td><a href="/users/<%= user.user.id %>"><%= user.user.first_name %> <%= user.user.last_name %> </td>
+          <td><%= user.count %></td>
+        </tr>
+      <% end %>
+</table>

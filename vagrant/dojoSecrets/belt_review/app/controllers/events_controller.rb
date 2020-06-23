@@ -3,7 +3,6 @@ class EventsController < ApplicationController
     if !session[:id]
       redirect_to '/users'
     else
-      @event_new = Event.new
       @user = User.find(session[:id])
       @event = Event.where(state: @user.state)
       @other_event = Event.where.not(state: @user.state)
@@ -24,7 +23,7 @@ class EventsController < ApplicationController
     if !session[:id]
       redirect_to '/users'
     else
-      @event = Event.new(events_params)
+      @event = Event.create(events_params)
       @event.user_id = session[:id]
       if @event.save
         redirect_to '/events'
@@ -34,6 +33,7 @@ class EventsController < ApplicationController
       end
     end
   end
+
 
   def edit
     if !session[:id]

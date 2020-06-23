@@ -1,0 +1,61 @@
+<h1>Welcome to the Playlist</h1>
+<p>Please register or sign-in</p>
+
+<div class="row">
+	<!-- LEFT COLUMN -->
+	<div id="register_column" class="col-sm-6">
+		<form id="register_form" action="/users" method="post">
+			<fieldset>
+				<legend>Register</legend>
+				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+				<div class="form-group">
+					<label>First Name</label>
+					<input class="form-control" type="text" name="user[first_name]">
+				</div>
+				<div class="form-group">
+					<label>Last Name</label>
+					<input class="form-control" type="text" name="user[last_name]">
+				</div>
+				<div class="form-group">
+					<label>Email</label>
+					<input class="form-control" type="text" name="user[email]">
+				</div>
+				<div class="form-group">
+					<label>Password</label>
+					<input class="form-control" type="password" name="user[password]">
+				</div>
+				<div class="form-group">
+					<label>Confirm PW</label>
+					<input class="form-control" type="password" name="user[password_confirmation]">
+				</div>
+				<br>
+				<input class="btn btn-primary btn-block" type="submit" value="Register">
+			</fieldset>
+		</form>
+	</div>
+
+	<!-- RIGHT COLUMN -->
+	<div id="login_column" class="col-sm-6">
+		<form id="login_form" action="/sessions/login" method="post">
+			<fieldset>
+				<legend>Login</legend>
+				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+				<div class="form-group">
+					<label>Email</label>
+					<input class="form-control" type="text" name="email">
+					<% if flash[:email_error] %>
+					<p style="color:red;"><%= flash[:email_error]%></p>
+					<% end %>
+				</div>
+				<div class="form-group">
+					<label>Password</label>
+					<input class="form-control" type="password" name="password">
+					<% if flash[:password_error] %>
+					<p style="color:red;"><%= flash[:password_error]%></p>
+					<% end %>
+				</div>
+				<input class="btn btn-primary btn-block" type="submit" value="Log In">
+			</fieldset>
+		</form>
+	</div>
+</div>
